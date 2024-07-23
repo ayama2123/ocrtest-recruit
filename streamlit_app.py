@@ -2,9 +2,10 @@ import streamlit as st
 from PIL import Image
 import pytesseract
 import openai
+import os
 
 # OpenAI APIキーの設定
-openai.api_key = 'OPENAI_API_KEY'
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 # OCRを使って画像からテキストを抽出する関数
 def extract_text_from_image(image):
