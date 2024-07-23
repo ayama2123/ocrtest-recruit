@@ -30,6 +30,7 @@ def parse_job_info_with_gpt(text):
         給与や勤務地の情報を抽出してください。\n\n{text}\n\n給与情報:\n勤務地情報:",
         """
         max_tokens=1500
+        ]
     )
     return response.choices[0].text.strip()
 
