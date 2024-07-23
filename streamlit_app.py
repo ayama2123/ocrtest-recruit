@@ -28,7 +28,8 @@ def extract_text_from_image(image):
         model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": f"あなた{image}から必要な情報を取得するGPTです。"},
-            {"role": "user", "content": prompt},
+            #{"role": "user", "content": prompt},
+            {"role": "type", "image": prompt},
         ],
     )
     text = response.choices[0].message.content
