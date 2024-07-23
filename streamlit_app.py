@@ -31,7 +31,7 @@ def extract_text_from_image(image):
             {"role": "user", "content": prompt},
         ],
     )
-    return response.choices[0].message.text
+    return text = response.choices[0].message.content
 
 # ChatGPTを使ってテキストから給与や勤務地を解析する関数
 def parse_job_info_with_gpt(text):
