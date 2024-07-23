@@ -27,7 +27,7 @@ def extract_text_from_image(image):
     response = openai.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
-            {"role": "system", "content": f"あなたは求人情報から必要な情報を取得するGPTです。"},
+            {"role": "system", "content": f"あなたはアップロードされた{image}から必要な情報を取得するGPTです。"},
             {"role": "user", "content": prompt},
         ],
     )
