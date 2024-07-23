@@ -14,7 +14,7 @@ def extract_text_from_image(image):
 # ChatGPTを使ってテキストから給与や勤務地を解析する関数
 def parse_job_info_with_gpt(text):
     prompt = f"""
-    {text}で取得した情報から、以下の項目を取得します。また、それぞれの項目ごとに10代が働くことを想定した場合の評価を出力します。
+    {image}で取得した情報から、以下の項目を取得します。また、それぞれの項目ごとに10代が働くことを想定した場合の評価を出力します。
     給与
     勤務地
     必要な資格・スキル
@@ -29,8 +29,8 @@ def parse_job_info_with_gpt(text):
         engine="gpt-4o-mini",
         messages=[
             {"role": "system", "content": f"あなたは求人情報から必要な情報を抜き出すGPTです。"},
-            {"role": "user", "image": prompt},
-        ],
+            {"role": "user", "content": prompt},
+        ]
         max_tokens=1500
     )
     return response.choices[0].message.content
