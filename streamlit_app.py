@@ -29,7 +29,7 @@ def parse_job_info_with_gpt(text):
         engine="gpt-4o-mini",
         messages=[
             {"role": "system", "content": f"あなたは求人情報から必要な情報を抜き出すGPTです。"},
-            {"role": "user", "content": prompt},
+            {"role": "user", "image": prompt},
         ],
         max_tokens=1500
     )
