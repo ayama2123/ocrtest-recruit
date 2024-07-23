@@ -8,9 +8,30 @@ import os
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 # OCRを使って画像からテキストを抽出する関数
+#def extract_text_from_image(image):
+#    text = pytesseract.image_to_string(image, lang='jpn')
+#    return text
+
 def extract_text_from_image(image):
-    text = pytesseract.image_to_string(image, lang='jpn')
-    return text
+    prompt = f"""
+    あなたは{image}のテキストを読み取るOCRです。
+    取得すべき情報は下記の項目です。
+    -給与
+    -勤務地
+    -必要な資格・スキル
+    -年間休日数
+    -ボーナスの有無
+    -福利厚生
+    -交通費や賃料の補助
+    """
+    response = openai.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": f"あなたは求人情報から必要な情報を取得するGPTです。"},
+            {"role": "user", "content": prompt},
+        ],
+    )
+    return response.choices[0].message.content
 
 # ChatGPTを使ってテキストから給与や勤務地を解析する関数
 def parse_job_info_with_gpt(text):
@@ -38,7 +59,6 @@ def parse_job_info_with_gpt(text):
        #max_tokens=1500
     )
     return response.choices[0].message.content
-    #return response.choices[0].text.strip()
 
 # Streamlitアプリの設定
 st.title("求人情報抽出アプリ")
