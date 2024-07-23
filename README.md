@@ -1,0 +1,2 @@
+# ocrtest-recruit
+OCRのテスト
