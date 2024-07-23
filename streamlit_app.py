@@ -42,15 +42,16 @@ st.title("求人情報抽出アプリ")
 
 uploaded_file = st.file_uploader("画像を選択してください...", type=["jpg", "jpeg", "png"])
 
-if uploaded_file is not None:
-    image = Image.open(uploaded_file)
-    st.image(image, caption='アップロードされた画像。', use_column_width=True)
-    
-    st.write("情報を抽出しています...")
-    
-    text = extract_text_from_image(image)
-    
-    parsed_info = parse_job_info_with_gpt(text)
-    
-    st.write("**抽出された情報:**")
-    st.write(parsed_info)
+if st.button("分析開始（少し時間がかかります）"):
+    if uploaded_file is not None:
+        image = Image.open(uploaded_file)
+        st.image(image, caption='アップロードされた画像。', use_column_width=True)
+        
+        st.write("情報を抽出しています...")
+        
+        text = extract_text_from_image(image)
+        
+        parsed_info = parse_job_info_with_gpt(text)
+        
+        st.write("**抽出された情報:**")
+        st.write(parsed_info)
