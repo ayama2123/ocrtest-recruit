@@ -33,7 +33,8 @@ def parse_job_info_with_gpt(text):
         ],
         max_tokens=1500
     )
-    return response.choices[0].text.strip()
+    return response.choices[0].message.content
+    #return response.choices[0].text.strip()
 
 # Streamlitアプリの設定
 st.title("求人情報抽出アプリ")
