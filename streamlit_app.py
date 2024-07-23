@@ -1,12 +1,10 @@
 import streamlit as st
 from PIL import Image
 import pytesseract
-import re
 import openai
-import io
 
 # OpenAI APIキーの設定
-openai.api_key = 'OPENAI_API_KEY'
+openai.api_key = 'YOUR_OPENAI_API_KEY'
 
 # OCRを使って画像からテキストを抽出する関数
 def extract_text_from_image(image):
@@ -16,7 +14,7 @@ def extract_text_from_image(image):
 # ChatGPTを使ってテキストから給与や勤務地を解析する関数
 def parse_job_info_with_gpt(text):
     response = openai.Completion.create(
-        engine="gpt-4o-mini",
+        engine="gpt-4",
         prompt=f"以下のテキストから給与や勤務地の情報を抽出してください。\n\n{text}\n\n給与情報:\n勤務地情報:",
         max_tokens=150
     )
