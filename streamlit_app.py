@@ -4,7 +4,7 @@ import pytesseract
 import openai
 
 # OpenAI APIキーの設定
-openai.api_key = 'YOUR_OPENAI_API_KEY'
+openai.api_key = 'OPENAI_API_KEY'
 
 # OCRを使って画像からテキストを抽出する関数
 def extract_text_from_image(image):
