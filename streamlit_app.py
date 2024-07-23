@@ -14,7 +14,7 @@ openai.api_key = os.getenv('OPENAI_API_KEY')
 
 def extract_text_from_image(image):
     prompt = f"""
-    あなたは{image}のから文字を読み取るOCRです。
+    あなたは{image}から文字を読み取るOCRです。
     取得すべき情報は下記の項目です。
     -給与
     -勤務地
@@ -27,12 +27,13 @@ def extract_text_from_image(image):
     response = openai.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
-            {"role": "system", "content": f"あなたはアップロードされた{image}から必要な情報を取得するGPTです。"},
+            {"role": "system", "content": f"あなた{image}から必要な情報を取得するGPTです。"},
             {"role": "user", "content": prompt},
         ],
     )
+    text = response.choices[0].message.content
+    return text
     #return response.choices[0].message.content
-    print(response.choices[0].message.content)
 
 # ChatGPTを使ってテキストから給与や勤務地を解析する関数
 def parse_job_info_with_gpt(text):
